@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Smart Farm</title>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+  <div class="logo">
+    <img src="image/2529fffff5adec4cc63d0efc7d52a7f4.png" alt="Logo 1" />
+  </div>
+
+  <h1 class="title">Smart Farm</h1>
+
+  <div class="logo1">
+    <img src="image/OIP.jpg" alt="Logo 2" />
+  </div>
+</header>
+
+    <!-- Box hiển thị thời gian thực -->
+    <div id="time-box" class="time-box">
+      <script>
+        function dongho() {
+          var time = new Date();
+          var gio = time.getHours();
+          var phut = time.getMinutes();
+          var giay = time.getSeconds();
+          if (gio < 10) gio = "0" + gio;
+          if (phut < 10) phut = "0" + phut;
+          if (giay < 10) giay = "0" + giay;
+          document.getElementById("time").innerHTML =
+            gio + ":" + phut + ":" + giay;
+        }
+
+        // Khởi tạo đồng hồ sau khi trang đã tải xong
+        document.addEventListener("DOMContentLoaded", function () {
+          dongho();
+          setInterval(dongho, 1000); // Sử dụng setInterval để cập nhật liên tục
+        });
+      </script>
+      <p id="time"></p>
+    </div>
+
+    <div class="main-wrapper">
+      <aside class="controls">
+        <div class="control-item">
+          <img src="image/tuoicay.jpg" alt="Tưới" />
+          <h3>Tưới</h3>
+          <div class="toggle-button" id="tuoi">
+            <div class="toggle-circle"></div>
+            <span class="toggle-text">Off</span>
+          </div>
+        </div>
+        <div class="control-item">
+          <img src="image/denon.png" alt="Đèn" />
+          <h3>Đèn</h3>
+          <div class="toggle-button" id="den">
+            <div class="toggle-circle"></div>
+            <span class="toggle-text">Off</span>
+          </div>
+        </div>
+        <div class="control-item">
+          <img src="image/fanoff.png" alt="Quạt" />
+          <h3>Quạt</h3>
+          <div class="toggle-button" id="quat">
+            <div class="toggle-circle"></div>
+            <span class="toggle-text">Off</span>
+          </div>
+        </div>
+        <div class="control-item">
+          <img src="image/roof.png" alt="Mái che" />
+          <h3>Mái che</h3>
+          <div class="toggle-button" id="maiche">
+            <div class="toggle-circle"></div>
+            <span class="toggle-text">Off</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="dashboard">
+        <div class="sensor">
+          <img src="image/good-weather.png" alt="Nhiệt độ" />
+          <h3>Nhiệt độ</h3>
+          <p id="nhietdo"></p>
+        </div>
+        <div class="sensor">
+          <img src="image/humidity.png" alt="Độ ẩm" />
+          <h3>Độ ẩm</h3>
+          <p id="doam"></p>
+        </div>
+        <div class="sensor">
+          <img src="image/dosang.jpg" alt="Độ sáng" />
+          <h3>Độ sáng</h3>
+          <p id="dosang"></p>
+        </div>
+        <div class="sensor">
+          <img src="image/test.png" alt="Độ ẩm đất" />
+          <h3>Độ ẩm đất</h3>
+          <p id="doamdat"></p>
+        </div>
+      </main>
+
+      <aside class="charts-container">
+        <div class="chart">
+          <div id="nhietdoChart" style="height: 200px; width: 100%"></div>
+        </div>
+        <div class="chart">
+          <div id="doamChart" style="height: 200px; width: 100%"></div>
+        </div>
+        <div class="chart">
+          <div id="dosangChart" style="height: 200px; width: 100%"></div>
+        </div>
+        <div class="chart">
+          <div id="doamdatChart" style="height: 200px; width: 100%"></div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="footer">
+      <p>Phan Việt Thành Đạt - 22161113</p>
+      <p>Nguyễn Thanh Thuý - 22161192</p>
+      <p> Lương Thị Mỹ Duyên - 22161107</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+    <script>
+      // Firebase configuration
+      const firebaseConfig = {
+  apiKey: "AIzaSyAzuloKPhOSsoDTKw4Ks4Gx0mvw_h6Sj3s",
+  authDomain: "project-3680597276515843100.firebaseapp.com",
+  databaseURL: "https://project-3680597276515843100-default-rtdb.firebaseio.com",
+  projectId: "project-3680597276515843100",
+  storageBucket: "project-3680597276515843100.firebasestorage.app",
+  messagingSenderId: "731837625507",
+  appId: "1:731837625507:web:796e97dd31c11f88307b16"
+};
+
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="chart.js"></script>
+
+    <script>
+      // Firebase data fetching functions
+      var nhietDo = document.getElementById("nhietdo");
+      var dbRef = firebase.database().ref().child("Nhiet do");
+      var doAm = document.getElementById("doam");
+      var dbRef2 = firebase.database().ref().child("Do am");
+      var doSang = document.getElementById("dosang");
+      var dbRef3 = firebase.database().ref().child("Do sang");
+      var doamDat = document.getElementById("doamdat");
+      var dbRef4 = firebase.database().ref().child("Do am dat");
+
+      function updateSensorData() {
+        dbRef.on("value", (snap) => (nhietDo.innerText = snap.val() + " °C"));
+        dbRef2.on("value", (snap) => (doAm.innerText = snap.val() + " %"));
+        dbRef3.on("value", (snap) => (doSang.innerText = snap.val() + " LUX"));
+        dbRef4.on("value", (snap) => (doamDat.innerText = snap.val() + " %"));
+      }
+      updateSensorData();
+    </script>
+  </body>
+</html>

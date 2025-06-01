@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("image/8753.jpg_wh1200.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  background-color: #4caf50;
+  color: #fff;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: green;
+  padding: 10px 20px;
+}
+
+.logo img,
+.logo1 img {
+  height: 70px;
+  width: 70px;
+  object-fit: contain;
+}
+
+.title {
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.header h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.main-wrapper {
+  display: flex;
+  width: 80%;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.controls {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.control-item {
+  width: 100%;
+  height: 180px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.control-item img {
+  width: 70px;
+  height: 70px;
+}
+
+/* Toggle Button */
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 15px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.toggle-circle {
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.toggle-text {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* Toggle On */
+
+.toggle-button.on {
+  background-color: #4caf50;
+}
+
+.toggle-button.on .toggle-circle {
+  transform: translateX(30px);
+}
+
+.toggle-button.on .toggle-text {
+  color: white;
+}
+
+/* Toggle Off */
+
+.toggle-button.off {
+  background-color: #ff4d4d;
+}
+
+.toggle-button.off .toggle-text {
+  color: white;
+}
+
+/* Dashboard (Center) */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 35%;
+}
+
+.sensor {
+  width: 70%;
+  height: 180px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.sensor img {
+  width: 70px;
+  height: 70px;
+}
+
+/* Charts Container (Right Side) */
+
+.charts-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chart {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #4caf50;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+}
+
+.time-box {
+  width: 250px;
+  /* Độ rộng box */
+  background-color: #fff;
+  padding: 20px;
+  /* Padding bên trong */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 20px auto;
+  /* Căn giữa */
+}
+
+#time {
+  font-size: 30px;
+  /* Kích thước chữ lớn */
+  font-weight: bold;
+  /* Chữ đậm */
+  color: #333;
+  /* Màu chữ tối */
+  font-family: "Arial", sans-serif;
+  /* Font chữ */
+}
